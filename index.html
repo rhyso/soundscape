@@ -51,10 +51,19 @@
 
     <div class="row">
         <div class="twelve columns">
+            <h1>Play at Random intervals</h1>
+            <button onclick="playRandom()" class="button-primary">Start </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
             <h1>Play Soundscape</h1>
             <a href="http://youtube.com" target="_blank"/>Amazon Jungle soundscape...</a>
         </div>
     </div>
+
+
 
 </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -73,6 +82,13 @@
         });   
       }
 
+      function playRandom(){
+          console.log('dd')
+          socket.emit('play-random',{
+              number: Math.floor(Math.random() * (4-1))+1
+          });
+      }
+
       socket.on('play', function (data) {
 
           switch(data.track) {
@@ -87,6 +103,19 @@
                   break;
           }
       });
+
+        socket.on('play-random', function (data){
+
+            for (i=0;i<15;i++) {
+                var timer = setInterval(
+                        function() {
+                            console.log(data.number)
+                            seconds++;
+                        }, 1000
+                );
+            }
+        })
+
     </script>
 
 </body>

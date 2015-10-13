@@ -20,10 +20,14 @@ app.get('/p', function (req, res) {
 
 app.use(express.static('static'));
 
-console.log('here')
 io.on('connection', function (socket) {
+
 	socket.on('play', function (data) {
 		console.log(data)
 		io.sockets.emit('play', data);
 	});
+
+	socket.on('play-random', function (data){
+		io.sockets.emit('play-random', data);
+	})
 });
