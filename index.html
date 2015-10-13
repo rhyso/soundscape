@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Soundscape</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="style/custom.css">
+
+
+</head>
+<body>
+
+
+<div class="container">
+    <audio id="audio-1">
+        <source src="audio/1.wav" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-2">
+        <source src="audio/2.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-3">
+        <source src="audio/3.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="row">
+        <div class="twelve columns">
+            <h1>Play Sounds</h1>
+            <button onclick="play(1)" class="button-primary">Play 1 </button>
+            <button onclick="play(2)" class="button-primary">Play 2</button>
+            <button onclick="play(3)" class="button-primary">Play 3</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
+            <h1>Play Soundscape</h1>
+            <a href="http://youtube.com" target="_blank"/>Amazon Jungle soundscape...</a>
+        </div>
+    </div>
+
+</div>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      
+      var socket = io.connect('http://localhost');
+
+      var audio1 = document.getElementById('audio-1');
+      var audio2 = document.getElementById('audio-2');
+      var audio3 = document.getElementById('audio-3');
+
+      function play(x) {
+        socket.emit('play', {
+            track: x 
+        });   
+      }
+
+      socket.on('play', function (data) {
+
+          switch(data.track) {
+              case 1:
+                  audio1.play();
+                  break;
+              case 2:
+                  audio2.play();
+                  break;
+              case 3:
+                  audio3.play();
+                  break;
+          }
+      });
+    </script>
+
+</body>
+</html>

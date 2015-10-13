@@ -1,0 +1,11 @@
+{
+  "name": "soundscapes",
+  "version": "0.0.1",
+  "description": "Soundscapes",
+  "main": "app.js",
+  "author": "chrisgwgreen",
+  "dependencies": {
+    "express": "latest",
+    "socket.io": "latest"
+  } 
+}

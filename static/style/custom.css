@@ -1,0 +1,22 @@
+.twelve{
+    background: #6B8F9C;
+    text-align: center;
+    padding: 20px;
+    border-radius:15px;
+}
+
+.twelve h1{
+    color:white;
+    font-style: bold;
+}
+.twelve .button-primary{
+    margin-top: 20px;
+}
+
+.row{
+    margin: 20px;
+}
+
+.row a{
+    color:white;
+}
